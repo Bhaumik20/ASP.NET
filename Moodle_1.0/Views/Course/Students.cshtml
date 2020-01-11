@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Moodle_1._0.Models.Course>
+@{
+    ViewBag.Title = "Students";
+}
+
+<h2>Students Enrolled in Your Courses</h2><br />
+@foreach(var s in Model)
+{
+    
+    <h5>@Html.Label("Course:")
+    @s.CourseName</h5>
+    @Html.Label("List of students:")
+    <ol>
+        @foreach(var i in s.Students)
+        {
+        <li>@i.UserName</li>
+        }
+    </ol>
+    <br />
+}
+@Html.ActionLink("Send mail to all", "Index", "Mail")

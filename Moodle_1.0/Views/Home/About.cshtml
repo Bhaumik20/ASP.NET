@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "About";
+}
+
+<h2>@ViewBag.Title.</h2>
+<br />
+<p style="font-size:x-large;display:inline;color:orangered;" class="first">Moodle</p> is a free learning site for students.
+    Select any number of courses from all available courses and enroll free. Isn't it simple. Access all the documents,projects
+    and much more content uploaded by teachers of respective courses. Take a quiz to brush up your knowledge. Have a doubt dont worry
+    You have contact info of every tecaher ask them your doubts. And addition to all that every student gets a repository for free.
+    Store your important documents,backup your files and access them anywhere using your account securely.<br />
+<br />
+
+
+    @if(User.Identity.IsAuthenticated)
+    {
+        @Html.ActionLink("Get started", "Index", "Course", null, new { @class = "btn btn-primary" });
+    }
+    else
+    {
+        @Html.ActionLink("Get started", "Login", "Account", null, new { @class = "btn btn-primary" });
+    }
+    

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Moodle_1._0.Models.Course>
+@{
+    ViewBag.Title = "Teachers";
+}
+
+<h2>Teachers</h2><br />
+@foreach (var s in Model)
+{
+
+<h5>
+    @Html.Label("Course:")
+    @s.CourseName<br />
+    @Html.Label("Teacher:")
+    @s.TeacherId
+</h5>
+<br />
+}
+
+

@@ -1,0 +1,80 @@
+﻿@model Moodle_1._0.ViewModel.QuestionAnswerViewModel
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+
+
+<style type="text/css">
+    .but {
+        background: red;
+        color: white;
+    }
+
+        .but:hover {
+            background: #930000;
+            color: white;
+        }
+
+    fieldset {
+        font-family: sans-serif;
+        border: 3px solid #000;
+        background: #ddd;
+        border-radius: 5px;
+        padding: 15px;
+    }
+
+        fieldset legend {
+            background: #1e65db;
+            color: #fff;
+            padding: 6px 10px 10px 20px;
+            font-size: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 0 5px #ddd;
+            margin-left: 1px;
+            margin-right: 10px;
+        }
+</style>
+<br><br>
+
+@Html.HiddenFor(model => model.QuestionId, new { @id = "txtQuestionId" })
+
+<fieldset>
+
+    <legend>@Model.QuestionName</legend>
+    <table style="width:100%" class="table table-condensed" id="tblQuestionOption">
+
+        @foreach (var item in Model.ListOfQuizOptions)
+        {
+            <tr>
+                <td>
+
+                    <input type="radio" name="option" value="@item.OptionName">  @item.OptionName
+
+                </td>
+
+            </tr>
+
+
+        }
+
+
+        <tr>
+            <td>
+                @if (Model.isLast)
+                {
+                    <input type="button" name="Save" value="Save" class="btn btn-success" id="btnSave" onclick="SaveAnswer()" />
+                }
+                else
+                {
+                    <input type="button" name="next" value="Next" class="btn btn-primary" id="btnNext" onclick="LoadQuestion()" />
+                }
+
+            </td>
+
+        </tr>
+
+    </table>
+
+</fieldset>
+

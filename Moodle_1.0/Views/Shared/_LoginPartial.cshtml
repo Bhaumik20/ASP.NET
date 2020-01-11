@@ -1,0 +1,107 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    if (User.IsInRole("Admin"))
+    {
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                @Html.ActionLink("Users", "Index", "Admin")
+            </li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                @Html.ActionLink("Courses", "Index", "AdminCourses")
+            </li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                @Html.ActionLink("Quiz", "Index", "AdminQuiz")
+            </li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                @Html.ActionLink("Quiz Result", "Index", "AdminResult")
+            </li>
+        </ul>
+
+    }
+    if (User.IsInRole("Teacher"))
+    {
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                @Html.ActionLink("Courses", "Index", "Course")
+            </li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                @Html.ActionLink("Students", "Students", "Course")
+            </li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                @Html.ActionLink("Result", "Result", "Course")
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                @Html.ActionLink("Quiz", "Index", "AdminQuiz")
+            </li>
+
+        </ul>
+    }
+    if (User.IsInRole("Student"))
+    {
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                @Html.ActionLink("Courses", "Index", "Student")
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                @Html.ActionLink("Teachers", "Teachers", "Student")
+            </li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                @Html.ActionLink("Repository", "Index", "Repository")
+            </li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                @Html.ActionLink("Result", "Result", "Student")
+            </li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                @Html.ActionLink("Quiz", "Index", "Quiz")
+            </li>
+
+        </ul>
+    }
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

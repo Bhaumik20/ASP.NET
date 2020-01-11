@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Moodle_1._0.ViewModel.ResultModel>
+
+
+@{
+    ViewBag.Title = "GetFinalResult";
+}
+
+
+<h2> Result</h2>
+
+<table style="width:100% " class="table table-bordered">
+
+    <thead>
+        <tr>
+            <td>
+                Question
+            </td>
+            <td>
+                Answer
+            </td>
+            <td>
+                Answer By User
+            </td>
+            <td>
+                Status
+            </td>
+        </tr>
+    </thead>
+
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @item.Question
+            </td>
+            <td>
+                @item.Answer
+            </td>
+            <td>
+                @item.AnswerByUser
+            </td>
+            <td>
+                @if (item.Status == "Correct")
+                {
+                    <label style="color:green" id="true">@item.Status</label>
+                }
+                else
+                {
+                    <label style="color:red" id="false">@item.Status</label>
+                }
+            </td>
+        </tr>
+    }
+
+
+</table>
+

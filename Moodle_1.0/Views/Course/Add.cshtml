@@ -1,0 +1,25 @@
+﻿@model Moodle_1._0.Models.CourseItem
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Upload File</h2>
+
+@using (Html.BeginForm("Add", "Course", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="form-group">
+    <textarea rows="3" placeholder="Description" class="form-control" cols="5" name="desc" id="desc"></textarea>
+</div>
+<div class="form-group">
+    
+        <input type="file" class="form-control" id="file" name="upload" placeholder="File"  />
+        
+    
+</div>
+<div class="form-group">
+    <input type="submit" class="btn btn-primary" value="Upload" />
+</div>
+    
+
+}

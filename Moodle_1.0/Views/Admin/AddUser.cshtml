@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "AddUser";
+}
+
+<h2>New User</h2>
+
+@using (Html.BeginForm("AddUser", "Admin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Create a new account.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.Label("Email", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBox("email",null, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Password", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.Password("password",null, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("ConfirmPassword", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.Password("confirmPassword",null, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Select Role", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownList("ddl", ViewBag.ddl as IEnumerable<SelectListItem>,new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Register" />
+        </div>
+    </div>
+}
+
+

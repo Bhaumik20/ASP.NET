@@ -1,0 +1,49 @@
+cls
+
+show dbs
+
+db
+
+use <db_name>
+
+db.<collection_name>.save({name : "PMJ"})
+show collections
+
+db.<collection_name>.find()
+
+db.<collection_name>.find().pretty()
+
+db.<collection_name>.insert({ "name":  "pmj"})
+
+db.<collection_name>.remove({}) //remove all
+use <db_name>
+db.dropDatabase()
+
+use <db_name>
+db.createCollections("student_table")
+OR
+db.createCollection("student_table", { capped : true, autoIndexId : true, size : 6142800, max : 10000 } )
+show collections
+
+db.<collection_name>.drop()
+
+db.<collection_name>.renameCollection(<new_collection_name>,[<drop_target>])
+
+db.students.updateMany( {}, { $rename: { "nmae": "name" } } )
+
+
+db.emps.insert({"_id":10, "name":"Anand", "designation":"Project Manager"})
+
+db.emps.find()
+
+db.emps.find({_id:1})
+
+db.emps.remove({_id: {$gt:3} })
+
+db.emps.save({"_id":10, "name":"Anand", "designation":"Project Manager"})
+
+db.stats()
+
+db.emps.stats()
+
+

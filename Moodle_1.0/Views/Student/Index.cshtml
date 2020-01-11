@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Moodle_1._0.Models.Course>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>My Courses</h2>
+@{ 
+    int count = 0;
+}
+@foreach(var i in Model)
+{
+    count++;
+    @count<span>.</span> 
+    @Html.ActionLink(i.CourseName, "Details", "Course",new {id=i.CourseId},null)
+    <br />
+}
+@if (count == 0)
+{
+    <p>You are not enrolled in any course.@Html.ActionLink("Enroll now!","Enroll","Student")</p>
+}
+

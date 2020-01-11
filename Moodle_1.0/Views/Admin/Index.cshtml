@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNet.Identity;
+@using Moodle_1._0.Models;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Manage Users</h2>
+@{
+    int i = 0;
+    UserManager<ApplicationUser> userManager = ViewBag.userManager as UserManager<ApplicationUser>;
+}
+@using (Html.BeginForm("Index", "Admin", FormMethod.Post, new { id = "filter",@class="form-group" }))
+{
+<div class="form-group">
+    @Html.ActionLink("+ Add new user", "AddUser", null, new { @class = "btn btn-success", style = "margin-bottom:5px;margin-right:20px;" })
+    @Html.Label("Filter Users:",new { @class = "control-label" })
+    @Html.DropDownList("Filter", ViewBag.roles as SelectList, "All", new { onchange = "javascript:document.getElementById('filter').submit()", @class = "form-control",style="display:inline;" })
+    <input type="text" name="search"  style="float:right;" class="form-control" value="@ViewBag.temp" onchange="javascript:document.getElementById('filter').submit()" placeholder="Search" />
+    
+</div>
+    
+}
+@if (ViewBag.msg != null)
+{
+    <p style="color:red;">@ViewBag.msg</p>
+}
+
+
+<table class="table table-striped table-hover table-bordered">
+    <thead class="bg-primary">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Role</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ApplicationUser user in ViewBag.users)
+        {
+            i++;
+            <tr>
+                <th scope="row">@i</th>
+                <td>@user.UserName</td>
+                <td>
+                    @foreach (string r in userManager.GetRoles(user.Id))
+                    {
+                        @r
+                    }
+                </td>
+
+                <td>@Html.ActionLink("Delete", "DeleteUser", new { id = @user.Id }, new { @class = "btn btn-danger" })</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+

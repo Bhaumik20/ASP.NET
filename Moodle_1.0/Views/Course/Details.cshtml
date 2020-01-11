@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Moodle_1._0.Models.CourseItem>
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "Details";
+}
+<h2>Details</h2>
+<hr />
+@foreach (var i in Model)
+{
+<div style="background-color:lightgrey;padding:5px;margin:8px;">
+    <p>@i.Description</p>
+    <p>@Html.ActionLink(i.FileName, "Download", new { id = i.Id })</p>
+    @if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Delete", "Delete",new { id=i.Id },new { style="color:red;" })
+    }
+</div>
+    
+}
+@if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
+{
+    @Html.ActionLink("+ Add", "Add")
+}
+

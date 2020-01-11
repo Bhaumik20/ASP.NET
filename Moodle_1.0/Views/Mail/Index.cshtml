@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Send mail via Gmail</h2><br />
+ <form method = "post" action = "/Mail/Index"> 
+     <div class="container">
+         
+         <span class="form-control-static"> Subject: </span>
+         <input class="form-control" type="text" name="sub" /> <br />
+         <span class="form-control-static"> Message: </span>
+         <textarea rows="5" class="form-control" name="mess"></textarea> <br />
+         <input type="submit" class="btn btn-primary" value="Send" />
+     </div>
+ </form>
+
